@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fad' Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="bg-objects" aria-hidden="true"></div>
+  <div class="app">
+    <header class="app-header">
+      <h1>Fad' Quiz</h1>
+      <p class="subtitle">Let's see how far you know me!</p>
+    </header>
+
+    <!-- Sign in screen (the beginning) -->
+    <section id="signin-screen" class="screen active">
+      <div class="card-sign"> 
+        <h2>Sign In</h2>
+      </div>
+      <div class="card">
+        <form id="signin-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="7eabbf65-4627-4974-9717-2eed7979f2ed">
+          <label class="field-label" for="player-name">Your name</label>
+          <input class="pixel-input" id="player-name" type="text" placeholder="e.g. Fad" autocomplete="name" maxlength="40">
+
+          <label class="field-label" for="player-email">Your email</label>
+          <input class="pixel-input" id="player-email" type="email" placeholder="e.g. fad@example.com" autocomplete="email" maxlength="80">
+
+          <label class="field-label" for="how-met">How did we meet?</label>
+          <input class="pixel-input" id="how-met" type="text" placeholder="e.g. at the campus" maxlength="80">
+
+          <p id="signin-error" class="signin-error"></p>
+        
+        <div class="card-sign">
+          <button id="signin-btn" class="btn btn-primary" type="submit">Continue</button>
+        </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Start screen -->
+    <section id="start-screen" class="screen">
+      <div class="card-screen">
+        <h2>Ready?</h2>
+        <p class="muted">Welcome, <span id="welcome-name">player</span>!</p>
+        <p class="muted small"><span id="welcome-email"></span></p>
+        <p class="muted small">We met: <span id="welcome-met">—</span></p>
+        <p class="muted">You will get <span id="total-questions">0</span> questions. Pick the best answer for each.</p>
+        <p class="muted small">Your progress is saved automatically, even if you refresh the page.</p>
+        <button id="start-btn" class="btn btn-primary">Start Quiz</button>
+        <button id="signout-btn" class="btn-link" type="button">Not you? Sign in again</button>
+      </div>
+    </section>
+
+    <!-- Quiz screen -->
+    <section id="quiz-screen" class="screen">
+      <div class="quiz-top">
+        <span id="question-counter" class="counter">Question 1 / 5</span>
+        <span id="score-counter" class="score">Score: 0</span>
+      </div>
+      <div class="progress-track">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <div id="question-box" class="question-box">
+        <h2 id="question-text">Question goes here</h2>
+        <div id="options" class="options"></div>
+        <div id="essay-box" class="essay-box">
+          <textarea id="essay-input" class="pixel-input essay-input" rows="4" placeholder="Type your answer here…"></textarea>
+        </div>
+      </div>
+
+      <div id="feedback" class="feedback"></div>
+
+      <div class="quiz-nav">
+        <button id="back-btn" class="btn btn-secondary" disabled>&lt; Back</button>
+        <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+      </div>
+    </section>
+
+    <!-- Result screen -->
+    <section id="result-screen" class="screen">
+      <div class="card">
+        <h2>Quiz Finished!</h2>
+        <p class="muted">You scored</p>
+        <p id="final-score" class="final-score">0 / 5</p>
+        <p id="result-message" class="result-message"></p>
+        <div id="essay-review" class="essay-review"></div>
+        <button id="restart-btn" class="btn btn-primary">Try Again</button>
+        <button id="signout-btn-2" class="btn-link" type="button">Change player</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

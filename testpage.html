@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>
+<script src="questions.js"></script>
+<script>
+var report = [];
+var bad = 0;
+QUESTIONS.forEach(function(q, i) {
+  var n = q.options.length;
+  if (typeof q.answer !== 'number' || q.answer < 0 || q.answer >= n) {
+    bad++;
+    report.push('Q' + (i+1) + ' INVALID answer=' + q.answer + ' options=' + n);
+  }
+});
+ESSAYS.forEach(function(e, i) {
+  if (typeof e.question !== 'string' || typeof e.sample !== 'string') {
+    bad++;
+    report.push('ESSAY' + (i+1) + ' missing fields');
+  }
+});
+var div = document.createElement('div');
+div.id = 'report';
+div.textContent = 'BAD=' + bad + ' | totalQ=' + QUESTIONS.length + ' essays=' + ESSAYS.length + ' || ' + report.join(' ; ');
+document.body.appendChild(div);
+</script>
+</body></html>
